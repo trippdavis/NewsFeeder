@@ -1,5 +1,4 @@
-<ul>
-  <% feed.entries().each(function(entry) { %>
-    <li><%= entry.escape("title" ) %></li>
-  <% }) %>
+<button class="refresh-feed">Refresh</button>
+URL: <%= feed.escape("url") %>
+<ul class="feed-entries">
 </ul>

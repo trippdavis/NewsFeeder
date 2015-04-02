@@ -12,7 +12,7 @@ NewsReader.Collections.Feeds = Backbone.Collection.extend({
       model.fetch({
         success: function () {
           this.add(model);
-        }
+        }.bind(this)
       }
       );
     }
