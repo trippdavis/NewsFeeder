@@ -1,0 +1,5 @@
+<ul>
+  <% feed.entries().each(function(entry) { %>
+    <li><%= entry.escape("title" ) %></li>
+  <% }) %>
+</ul>
