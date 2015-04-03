@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :user_feeds, class_name: 'UserFeed', foreign_key: :user_id
   has_many :feeds, through: :user_feeds, source: :feed
+  has_many :favorites
+
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)

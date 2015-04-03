@@ -3,6 +3,7 @@ NewsReader::Application.routes.draw do
     resources :feeds, only: [:index, :create, :show, :destroy] do
       resources :entries, only: [:index]
     end
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :users, only: [:new, :create, :show]

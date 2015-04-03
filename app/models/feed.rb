@@ -4,6 +4,7 @@ class Feed < ActiveRecord::Base
   has_many :entries, :dependent => :destroy
   has_many :user_feeds
   has_many :users, through: :user_feeds, source: :user
+  has_many :favorites, as: :favorable
 
   def self.find_or_create_by_url(url)
     feed = Feed.find_by_url(url)
@@ -45,5 +46,13 @@ class Feed < ActiveRecord::Base
       self.reload
     end
     self.entries
+  end
+
+  def fav_entries(user)
+    entry_favs = Favorite.all.where(user_id: user.id, favorable_type: "Entry")
+    feed_entry_favs = entry_favs.select do |fav|
+      self.entries.pluck(:id).include?(fav.favorable_id)
+    end
+    feed_entry_favs
   end
 end
